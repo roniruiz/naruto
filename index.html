@@ -1,0 +1,1340 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gestión Funeraria</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="GestFuneraria">
+    <meta name="apple-mobile-web-app-title" content="GestFuneraria">
+    <meta name="theme-color" content="#2c3e50">
+    <meta name="msapplication-navbutton-color" content="#2c3e50">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="msapplication-starturl" content="/index.html">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- PWA Icons -->
+    <link rel="icon" type="image/svg+xml" sizes="72x72" href="icons/icon-72x72.svg">
+    <link rel="icon" type="image/svg+xml" sizes="96x96" href="icons/icon-96x96.svg">
+    <link rel="icon" type="image/svg+xml" sizes="128x128" href="icons/icon-128x128.svg">
+    <link rel="icon" type="image/svg+xml" sizes="144x144" href="icons/icon-144x144.svg">
+    <link rel="icon" type="image/svg+xml" sizes="152x152" href="icons/icon-152x152.svg">
+    <link rel="icon" type="image/svg+xml" sizes="192x192" href="icons/icon-192x192.svg">
+    <link rel="icon" type="image/svg+xml" sizes="384x384" href="icons/icon-384x384.svg">
+    <link rel="icon" type="image/svg+xml" sizes="512x512" href="icons/icon-512x512.svg">
+    
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" sizes="72x72" href="icons/icon-72x72.svg">
+    <link rel="apple-touch-icon" sizes="96x96" href="icons/icon-96x96.svg">
+    <link rel="apple-touch-icon" sizes="128x128" href="icons/icon-128x128.svg">
+    <link rel="apple-touch-icon" sizes="144x144" href="icons/icon-144x144.svg">
+    <link rel="apple-touch-icon" sizes="152x152" href="icons/icon-152x152.svg">
+    <link rel="apple-touch-icon" sizes="192x192" href="icons/icon-192x192.svg">
+    <link rel="apple-touch-icon" sizes="384x384" href="icons/icon-384x384.svg">
+    <link rel="apple-touch-icon" sizes="512x512" href="icons/icon-512x512.svg">
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <button class="sidebar-toggle" onclick="toggleSidebar()">
+        <i class="bi bi-list"></i>
+    </button>
+
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <div class="d-flex align-items-center">
+                <i class="bi bi-building me-2"></i>
+                <h5 class="mb-0">Sistema Funerario</h5>
+            </div>
+        </div>
+        <div class="sidebar-content">
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="#" data-section="inicio" class="active">
+                        <i class="bi bi-house-door"></i>
+                        <span>Inicio</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" data-section="inventario">
+                        <i class="bi bi-box-seam"></i>
+                        <span>Inventario</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" data-section="cuadre">
+                        <i class="bi bi-cash"></i>
+                        <span>Caja</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" data-section="reportes">
+                        <i class="bi bi-file-text"></i>
+                        <span>Reportes</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" data-section="gastos">
+                        <i class="bi bi-tools"></i>
+                        <span>Gastos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" data-section="clientes">
+                        <i class="bi bi-people"></i>
+                        <span>Clientes</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" data-section="ventas">
+                        <i class="bi bi-cart"></i>
+                        <span>Ventas</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" data-section="seguros">
+                        <i class="bi bi-file-earmark-text"></i>
+                        <span>Seguros</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" data-section="fallecidos">
+                        <i class="bi bi-person-x"></i>
+                        <span>Fallecidos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" data-section="opciones">
+                        <i class="bi bi-gear"></i>
+                        <span>Opciones</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" onclick="logout(); return false;">
+                        <i class="bi bi-box-arrow-right"></i>
+                        <span>Cerrar Sesión</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="sidebar-backdrop"></div>
+
+    <div id="loginContainer" class="container-fluid">
+        <div class="version-info">v1.0.0</div>
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="logo-container">
+                            <i class="bi bi-building"></i>
+                        </div>
+                        <h3 class="card-title">Sistema de Gestión Funeraria</h3>
+                        <p class="text-muted">Ingrese sus credenciales para continuar</p>
+                    </div>
+                    <div class="card-body">
+                        <form id="loginForm">
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="bi bi-person"></i>
+                                </span>
+                                <select class="form-select" id="username" required>
+                                    <option value="">Seleccione usuario...</option>
+                                    <option value="admin">Administrador</option>
+                                    <option value="cajero1">Cajero 1</option>
+                                    <option value="cajero2">Cajero 2</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="bi bi-lock"></i>
+                                </span>
+                                <input type="password" class="form-control" id="password" 
+                                       placeholder="Contraseña" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">
+                                <i class="bi bi-box-arrow-in-right me-2"></i>
+                                Iniciar Sesión
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="mainContainer" class="container-fluid d-none">
+        <div id="ventasSection" class="section-content d-none">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2><i class="bi bi-cart"></i> Registro de Ventas</h2>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSaleModal">
+                    <i class="bi bi-plus-lg"></i> Nueva Venta
+                </button>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header bg-primary text-white">
+                            <h4 class="mb-0"><i class="bi bi-clock-history"></i> Historial de Ventas Recientes</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Fecha</th>
+                                            <th>Cliente</th>
+                                            <th>Productos</th>
+                                            <th>Total</th>
+                                            <th>Estado</th>
+                                            <th>Pago</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="salesTableBody">
+                                        <!-- Sales will be dynamically added here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="inicioSection" class="section-content">
+            <div class="dashboard-header">
+                <h1 class="dashboard-welcome">
+                    <i class="bi bi-grid-1x2"></i> 
+                    Bienvenido, <span id="welcomeUserName">Usuario</span>
+                </h1>
+                <p class="dashboard-subtitle">
+                    <i class="bi bi-calendar3"></i> 
+                    <span id="currentDate">Fecha actual</span>
+                </p>
+            </div>
+
+            <div class="container-fluid">
+                <div class="row g-4">
+                    <div class="col-md-3">
+                        <div class="dashboard-stat-card">
+                            <div class="dashboard-stat-icon">
+                                <i class="bi bi-cash-stack"></i>
+                            </div>
+                            <div class="dashboard-stat-value number" id="totalIngresosHoy">$0.00</div>
+                            <div class="dashboard-stat-label">Ingresos del Día</div>
+                            <div class="progress mt-2" style="height: 4px;">
+                                <div class="progress-bar bg-success" style="width: 70%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <div class="dashboard-stat-card">
+                            <div class="dashboard-stat-icon">
+                                <i class="bi bi-people"></i>
+                            </div>
+                            <div class="dashboard-stat-value number" id="cajerosActivos">0</div>
+                            <div class="dashboard-stat-label">Usuarios Activos</div>
+                            <div class="progress mt-2" style="height: 4px;">
+                                <div class="progress-bar bg-primary" style="width: 85%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <div class="dashboard-stat-card">
+                            <div class="dashboard-stat-icon">
+                                <i class="bi bi-box-seam"></i>
+                            </div>
+                            <div class="dashboard-stat-value number" id="totalItems">0</div>
+                            <div class="dashboard-stat-label">Items en Inventario</div>
+                            <div class="progress mt-2" style="height: 4px;">
+                                <div class="progress-bar bg-warning" style="width: 60%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <div class="dashboard-stat-card">
+                            <div class="dashboard-stat-icon">
+                                <i class="bi bi-graph-up"></i>
+                            </div>
+                            <div class="dashboard-stat-value number" id="ventasHoy">0</div>
+                            <div class="dashboard-stat-label">Ventas Realizadas</div>
+                            <div class="progress mt-2" style="height: 4px;">
+                                <div class="progress-bar bg-info" style="width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-md-8">
+                        <div class="dashboard-recent-activity">
+                            <div class="header">
+                                <h3><i class="bi bi-activity"></i> Actividad Reciente</h3>
+                                <button class="btn btn-sm btn-outline-primary">Ver Todo</button>
+                            </div>
+                            <div id="ultimosMovimientos"></div>
+                        </div>
+                        
+                        <div class="quick-actions">
+                            <div class="quick-action-card" onclick="document.querySelector('[data-section=\'ventas\']').click()">
+                                <div class="quick-action-icon">
+                                    <i class="bi bi-cart-plus"></i>
+                                </div>
+                                <h3 class="quick-action-title">Nueva Venta</h3>
+                                <p class="quick-action-description">Registrar una nueva venta</p>
+                            </div>
+                            
+                            <div class="quick-action-card" onclick="document.querySelector('[data-section=\'inventario\']').click()">
+                                <div class="quick-action-icon">
+                                    <i class="bi bi-box-seam"></i>
+                                </div>
+                                <h3 class="quick-action-title">Inventario</h3>
+                                <p class="quick-action-description">Gestionar inventario</p>
+                            </div>
+                            
+                            <div class="quick-action-card" onclick="document.querySelector('[data-section=\'clientes\']').click()">
+                                <div class="quick-action-icon">
+                                    <i class="bi bi-person-plus"></i>
+                                </div>
+                                <h3 class="quick-action-title">Nuevo Cliente</h3>
+                                <p class="quick-action-description">Registrar nuevo cliente</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="dashboard-stat-card">
+                            <h3 class="h5 mb-3"><i class="bi bi-calendar-check"></i> Resumen del Día</h3>
+                            <div id="resumenDia">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Ingresos</span>
+                                    <span class="text-success" id="resumenIngresos">$0.00</span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Egresos</span>
+                                    <span class="text-danger" id="resumenEgresos">$0.00</span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Ventas</span>
+                                    <span id="resumenVentas">0</span>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span>Clientes Nuevos</span>
+                                    <span id="resumenClientes">0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="inventarioSection" class="section-content d-none">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2><i class="bi bi-box-seam"></i> Gestión de Inventario</h2>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addItemModal">
+                    <i class="bi bi-plus-lg"></i> Agregar Item
+                </button>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <i class="bi bi-box" style="font-size: 2rem; color: var(--accent-color);"></i>
+                        <div class="stat-value" id="totalCajas">0</div>
+                        <div class="stat-label">Cajas Totales</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <i class="bi bi-chair" style="font-size: 2rem; color: var(--accent-color);"></i>
+                        <div class="stat-value" id="totalSillas">0</div>
+                        <div class="stat-label">Sillas Totales</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <i class="bi bi-table" style="font-size: 2rem; color: var(--accent-color);"></i>
+                        <div class="stat-value" id="totalMesas">0</div>
+                        <div class="stat-label">Mesas Totales</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <i class="bi bi-house" style="font-size: 2rem; color: var(--accent-color);"></i>
+                        <div class="stat-value" id="totalCarpas">0</div>
+                        <div class="stat-label">Carpas Totales</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h4>Inventario Actual</h4>
+                            <div class="col-md-4">
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-search"></i></span>
+                                    <input type="text" class="form-control" id="searchInventory" 
+                                   placeholder="Buscar en inventario..." 
+                                   onkeyup="searchInventory()">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div id="inventoryList"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para Agregar Item -->
+        <div class="modal fade" id="addItemModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"><i class="bi bi-plus-circle"></i> Agregar Nuevo Item</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="inventoryForm">
+                            <div class="mb-3">
+                                <label class="form-label">Tipo de Item</label>
+                                <select class="form-select" id="itemType" required>
+                                    <option value="caja">Caja</option>
+                                    <option value="silla">Silla</option>
+                                    <option value="mesa">Mesa</option>
+                                    <option value="carpa">Carpa</option>
+                                    <option value="otro">Otro</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Nombre del Item</label>
+                                <input type="text" class="form-control" id="itemName" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Cantidad</label>
+                                <input type="number" class="form-control" id="itemQuantity" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Precio Unitario</label>
+                                <input type="number" class="form-control" id="itemPrice" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Estado</label>
+                                <select class="form-select" id="itemStatus" required>
+                                    <option value="disponible">Disponible</option>
+                                    <option value="ocupado">Ocupado</option>
+                                    <option value="mantenimiento">En Mantenimiento</option>
+                                </select>
+                            </div>
+                            <div class="text-end">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn btn-primary">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="cuadreSection" class="section-content d-none">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2><i class="bi bi-cash"></i> Cuadre de Caja</h2>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Registrar Movimiento</h4>
+                        </div>
+                        <div class="card-body">
+                            <form id="cashForm">
+                                <div class="mb-3">
+                                    <label class="form-label">Tipo</label>
+                                    <select class="form-select" id="movementType" required>
+                                        <option value="ingreso">Ingreso</option>
+                                        <option value="egreso">Egreso</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Monto</label>
+                                    <input type="number" class="form-control" id="amount" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Descripción</label>
+                                    <textarea class="form-control" id="description" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Registrar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Resumen de Caja</h4>
+                        </div>
+                        <div class="card-body">
+                            <div id="cashSummary"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Nueva sección de Reportes -->
+        <div id="reportesSection" class="section-content d-none">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2><i class="bi bi-file-earmark-text"></i> Reportes</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mb-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Generar Reportes</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row mb-3">
+                                <div class="col-md-3">
+                                    <label>Fecha Inicio:</label>
+                                    <input type="date" class="form-control" id="startDate">
+                                </div>
+                                <div class="col-md-3">
+                                    <label>Fecha Fin:</label>
+                                    <input type="date" class="form-control" id="endDate">
+                                </div>
+                                <div class="col-md-3">
+                                    <label>Tipo de Reporte:</label>
+                                    <select class="form-select" id="reportType">
+                                        <option value="ventas">Reporte de Ventas</option>
+                                        <option value="clientes">Reporte de Clientes</option>
+                                        <option value="cuadre">Cuadre de Caja</option>
+                                        <option value="diario">Actividad Diaria</option>
+                                        <option value="nomina">Reporte de Nómina</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <button class="btn btn-primary mt-4" onclick="generateReport()">Generar Reporte</button>
+                                </div>
+                            </div>
+                            <div id="reportContent"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Nueva sección de Gastos y Mantenimiento -->
+        <div id="gastosSection" class="section-content d-none">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2><i class="bi bi-tools"></i> Gastos y Mantenimiento</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Registrar Gasto o Mantenimiento</h4>
+                        </div>
+                        <div class="card-body">
+                            <form id="expenseForm">
+                                <div class="mb-3">
+                                    <label class="form-label">Tipo</label>
+                                    <select class="form-select" id="expenseType" required>
+                                        <option value="mantenimiento">Mantenimiento</option>
+                                        <option value="gasto_operativo">Gasto Operativo</option>
+                                        <option value="otros">Otros Gastos</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Monto</label>
+                                    <input type="number" class="form-control" id="expenseAmount" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Descripción</label>
+                                    <textarea class="form-control" id="expenseDescription" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Registrar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Historial de Gastos</h4>
+                        </div>
+                        <div class="card-body">
+                            <div id="expenseHistory"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="clientesSection" class="section-content d-none">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2><i class="bi bi-people"></i> Gestión de Clientes</h2>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addClientModal">
+                    <i class="bi bi-person-plus"></i> Nuevo Cliente
+                </button>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h4>Lista de Clientes</h4>
+                            <div class="col-md-4">
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-search"></i></span>
+                                    <input type="text" class="form-control" id="searchClients" 
+                                           placeholder="Buscar cliente..." 
+                                           onkeyup="searchClients()">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div id="clientsList" class="table-responsive"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para Agregar Cliente -->
+        <div class="modal fade" id="addClientModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"><i class="bi bi-person-plus"></i> Agregar Nuevo Cliente</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="clientForm">
+                            <div class="mb-3">
+                                <label class="form-label">Nombre Completo</label>
+                                <input type="text" class="form-control" id="clientName" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Cédula/RNC</label>
+                                <input type="text" class="form-control" id="clientId" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Teléfono</label>
+                                <input type="tel" class="form-control" id="clientPhone" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Dirección</label>
+                                <textarea class="form-control" id="clientAddress" required></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" id="clientEmail">
+                            </div>
+                            <div class="text-end">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn btn-primary">Guardar Cliente</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="ventasSection2" class="section-content d-none">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2><i class="bi bi-cart"></i> Gestión de Ventas</h2>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h4>Historial de Ventas</h4>
+                            <div class="col-md-4">
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-search"></i></span>
+                                    <input type="text" class="form-control" id="searchSales" 
+                                           placeholder="Buscar venta...">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div id="salesList"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para Nueva Venta -->
+        <div class="modal fade" id="addSaleModal" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"><i class="bi bi-cart-plus"></i> Registrar Nueva Venta</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="salesForm">
+                            <div class="row mb-3">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Cliente</label>
+                                    <div class="input-group">
+                                        <select class="form-select" id="saleClient" required>
+                                            <option value="">Seleccionar cliente existente...</option>
+                                            <!-- Se llenará dinámicamente -->
+                                        </select>
+                                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#quickAddClientModal">
+                                            <i class="bi bi-person-plus"></i> Nuevo
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label">Estado</label>
+                                    <select class="form-select" id="saleStatus" required>
+                                        <option value="completado">Completado</option>
+                                        <option value="pendiente">Pendiente</option>
+                                        <option value="espera">En Espera</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label">Método de Pago</label>
+                                    <select class="form-select" id="paymentMethod" required>
+                                        <option value="efectivo">Efectivo</option>
+                                        <option value="tarjeta">Tarjeta</option>
+                                        <option value="transferencia">Transferencia</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="onCredit">
+                                <label class="form-check-label" for="onCredit">
+                                    <i class="bi bi-credit-card"></i> Venta a crédito / en espera
+                                </label>
+                            </div>
+
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    <h6 class="mb-0">Items de la Venta</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row mb-3">
+                                        <div class="col-md-4">
+                                            <label class="form-label">Nombre del Item</label>
+                                            <input type="text" class="form-control" id="itemNameInput">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label">Cantidad</label>
+                                            <input type="number" class="form-control" id="itemQuantityInput" min="1" value="1">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label class="form-label">Precio Unitario</label>
+                                            <input type="number" class="form-control" id="itemPriceInput" step="0.01">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label class="form-label">&nbsp;</label>
+                                            <button type="button" class="btn btn-primary w-100" onclick="addManualItem()">
+                                                <i class="bi bi-plus-lg"></i> Agregar Item
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="table-responsive">
+                                        <table class="table table-sm">
+                                            <thead>
+                                                <tr>
+                                                    <th>Item</th>
+                                                    <th>Cantidad</th>
+                                                    <th>Precio Unit.</th>
+                                                    <th>Subtotal</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="saleItemsList">
+                                                <!-- Items se agregarán aquí -->
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <td colspan="3" class="text-end"><strong>Total:</strong></td>
+                                                    <td class="number"><strong><span id="saleTotal" class="number">0.00</span></strong></td>
+                                                    <td></td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Notas adicionales</label>
+                                <textarea class="form-control" id="saleNotes" rows="2"></textarea>
+                            </div>
+
+                            <div class="text-end">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="bi bi-check-circle"></i> Completar Venta
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para agregar cliente rápidamente -->
+        <div class="modal fade" id="quickAddClientModal" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title">
+                            <i class="bi bi-person-plus"></i> Agregar Nuevo Cliente
+                        </h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="quickClientForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Nombre Completo</label>
+                                        <input type="text" class="form-control" id="quickClientName" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Cédula/RNC</label>
+                                        <input type="text" class="form-control" id="quickClientId" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Teléfono</label>
+                                        <input type="tel" class="form-control" id="quickClientPhone" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="quickClientEmail">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Dirección</label>
+                                <textarea class="form-control" id="quickClientAddress" required rows="2"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary" onclick="saveQuickClient()">
+                            <i class="bi bi-save"></i> Guardar y Seleccionar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="segurosSection" class="section-content d-none">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <h2 class="h5"><i class="bi bi-file-earmark-text"></i> Solicitud de Seguro Funerario</h2>
+                <button class="btn btn-sm btn-primary" onclick="window.print()">
+                    <i class="bi bi-printer"></i> Imprimir
+                </button>
+            </div>
+
+            <div class="card">
+                <div class="card-header text-center py-2">
+                    <h3>SERVICIOS FUNERARIOS LA GRAN DESPEDIDA</h3>
+                    <h4>Solicitud de Seguro Funerario</h4>
+                </div>
+                <div class="card-body">
+                    <form id="insuranceForm">
+                        <div class="row mb-2">
+                            <div class="col-md-12">
+                                <h5>Información del Solicitante</h5>
+                                <hr class="my-1">
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Nombres y Apellidos</label>
+                                    <input type="text" class="form-control form-control-sm" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Cédula/RNC</label>
+                                    <input type="text" class="form-control form-control-sm" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Teléfono</label>
+                                    <input type="tel" class="form-control form-control-sm" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Dirección</label>
+                                    <input type="text" class="form-control form-control-sm" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-2">
+                            <div class="col-md-12">
+                                <h5>Beneficiarios</h5>
+                                <hr class="my-1">
+                            </div>
+                            <div class="col-12">
+                                <table class="table table-sm table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Cédula</th>
+                                            <th>Parentesco</th>
+                                            <th>%</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><input type="text" class="form-control form-control-sm"></td>
+                                            <td><input type="text" class="form-control form-control-sm"></td>
+                                            <td><input type="text" class="form-control form-control-sm"></td>
+                                            <td><input type="number" class="form-control form-control-sm" max="100"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="row mb-2">
+                            <div class="col-md-12">
+                                <h5>Plan Seleccionado</h5>
+                                <hr class="my-1">
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Tipo de Plan</label>
+                                    <select class="form-select form-select-sm" required>
+                                        <option value="">Seleccione</option>
+                                        <option value="basico">Básico</option>
+                                        <option value="estandar">Estándar</option>
+                                        <option value="premium">Premium</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Forma de Pago</label>
+                                    <select class="form-select form-select-sm" required>
+                                        <option value="mensual">Mensual</option>
+                                        <option value="trimestral">Trimestral</option>
+                                        <option value="anual">Anual</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="alert alert-info py-1 px-2">
+                            <h6>Declaración</h6>
+                            <p class="small">Declaro que la información proporcionada es verdadera y acepto los términos y condiciones del seguro funerario.</p>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="form-label">Firma del Solicitante</label>
+                                <div class="border text-center">_________________</div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Fecha</label>
+                                <input type="date" class="form-control form-control-sm" required>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div id="fallecidosSection" class="section-content d-none">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2><i class="bi bi-person-x"></i> Registro de Fallecidos</h2>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addDeceasedModal">
+                    <i class="bi bi-plus-lg"></i> Nuevo Registro
+                </button>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h4>Lista de Registros</h4>
+                            <div class="col-md-4">
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-search"></i></span>
+                                    <input type="text" class="form-control" id="searchDeceased" 
+                                           placeholder="Buscar registro...">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div id="deceasedList" class="table-responsive"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="addDeceasedModal" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"><i class="bi bi-person-plus"></i> Nuevo Registro de Fallecido</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="deceasedForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Nombre Completo</label>
+                                        <input type="text" class="form-control" id="deceasedName" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Documento de Identidad</label>
+                                        <input type="text" class="form-control" id="documentId" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Edad</label>
+                                        <input type="number" class="form-control" id="deceasedAge" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Fecha de Fallecimiento</label>
+                                        <input type="date" class="form-control" id="dateOfDeath" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Causa del Fallecimiento</label>
+                                        <input type="text" class="form-control" id="causeOfDeath" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Lugar del Fallecimiento</label>
+                                        <input type="text" class="form-control" id="deathLocation" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Contacto Familiar</label>
+                                        <input type="text" class="form-control" id="familyContact" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Tipo de Servicio</label>
+                                        <select class="form-select" id="serviceType" required>
+                                            <option value="basico">Servicio Básico</option>
+                                            <option value="estandar">Servicio Estándar</option>
+                                            <option value="premium">Servicio Premium</option>
+                                            <option value="especial">Servicio Especial</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Estado del Servicio</label>
+                                        <select class="form-select" id="deceasedStatus" required>
+                                            <option value="pendiente">Pendiente</option>
+                                            <option value="en_proceso">En Proceso</option>
+                                            <option value="completado">Completado</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Notas Adicionales</label>
+                                        <textarea class="form-control" id="deceasedNotes" rows="3"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="text-end">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="bi bi-save"></i> Guardar Registro
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="opcionesSection" class="section-content d-none">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2><i class="bi bi-gear"></i> Opciones del Sistema</h2>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h4><i class="bi bi-palette"></i> Apariencia</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label class="form-label">Tema del Sistema</label>
+                                <select class="form-select" id="themeSelect" onchange="changeTheme(this.value)">
+                                    <option value="light">Claro</option>
+                                    <option value="dark">Oscuro</option>
+                                    <option value="custom">Personalizado</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Color Principal</label>
+                                <input type="color" class="form-control form-control-color" id="primaryColor" value="#2c3e50" onchange="updateColors('primary', this.value)">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Color Secundario</label>
+                                <input type="color" class="form-control form-control-color" id="secondaryColor" value="#34495e" onchange="updateColors('secondary', this.value)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h4><i class="bi bi-bell"></i> Notificaciones</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-check form-switch mb-3">
+                                <input class="form-check-input" type="checkbox" id="enableNotifications" onchange="toggleNotifications(this.checked)">
+                                <label class="form-check-label">Activar notificaciones</label>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Duración de notificaciones (segundos)</label>
+                                <input type="number" class="form-control" id="notificationDuration" min="1" max="10" value="3">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h4><i class="bi bi-database"></i> Datos del Sistema</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label class="form-label">Respaldo de Datos</label>
+                                <div class="d-grid gap-2">
+                                    <button class="btn btn-primary" onclick="exportData()">
+                                        <i class="bi bi-download"></i> Exportar Datos
+                                    </button>
+                                    <button class="btn btn-warning" onclick="importData()">
+                                        <i class="bi bi-upload"></i> Importar Datos
+                                    </button>
+                                    <input type="file" id="importFile" accept=".json" style="display: none;" onchange="handleImport(this)">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <button class="btn btn-info w-100 mb-2" onclick="performSystemUpdate()">
+                                    <i class="bi bi-arrow-clockwise"></i> Actualizar Sistema Ahora
+                                </button>
+                                <small class="text-muted d-block text-center">El sistema se actualiza automáticamente cada día a medianoche</small>
+                            </div>
+                            <div class="mb-3">
+                                <button class="btn btn-danger w-100" onclick="clearAllData()">
+                                    <i class="bi bi-trash"></i> Limpiar Todos los Datos
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h4><i class="bi bi-person-gear"></i> Preferencias de Usuario</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label class="form-label">Idioma del Sistema</label>
+                                <select class="form-select" id="languageSelect" onchange="changeLanguage(this.value)">
+                                    <option value="es">Español</option>
+                                    <option value="en">English</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Formato de Fecha</label>
+                                <select class="form-select" id="dateFormat" onchange="updateDateFormat(this.value)">
+                                    <option value="DD/MM/YYYY">DD/MM/YYYY</option>
+                                    <option value="MM/DD/YYYY">MM/DD/YYYY</option>
+                                    <option value="YYYY-MM-DD">YYYY-MM-DD</option>
+                                </select>
+                            </div>
+                            <div class="form-check form-switch mb-3">
+                                <input class="form-check-input" type="checkbox" id="autoLogout" onchange="toggleAutoLogout(this.checked)">
+                                <label class="form-check-label">Cerrar sesión automáticamente después de inactividad</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="saleDetailsModal" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"><i class="bi bi-receipt"></i> Detalles de Venta</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5>Información de la Venta</h5>
+                                <table class="table table-sm">
+                                    <tr>
+                                        <td><strong>Cliente:</strong></td>
+                                        <td id="saleDetailClientName"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Fecha:</strong></td>
+                                        <td id="saleDetailDate"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Total:</strong></td>
+                                        <td id="saleDetailTotal"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Estado:</strong></td>
+                                        <td id="saleDetailStatus"></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="col-md-6">
+                                <h5>Estado de Pago</h5>
+                                <table class="table table-sm">
+                                    <tr>
+                                        <td><strong>Estado:</strong></td>
+                                        <td id="saleDetailPaymentStatus"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Pagado:</strong></td>
+                                        <td id="saleDetailAmountPaid"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Pendiente:</strong></td>
+                                        <td id="saleDetailAmountDue"></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <hr>
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-12">
+                                <h5>Editar Estado</h5>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Estado de Pago</label>
+                                        <select class="form-select" id="editPaymentStatus">
+                                            <option value="pendiente">Pendiente</option>
+                                            <option value="parcial">Pago Parcial</option>
+                                            <option value="pagado">Pagado</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Estado de Venta</label>
+                                        <select class="form-select" id="editSaleStatus">
+                                            <option value="pendiente">Pendiente</option>
+                                            <option value="espera">En Espera</option>
+                                            <option value="completado">Completado</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <button type="button" class="btn btn-primary w-100" onclick="updateSaleStatus()">
+                                            <i class="bi bi-check-circle"></i> Actualizar Estado
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h5>Procesar Pago</h5>
+                                <form id="paymentForm">
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label">Monto a Pagar</label>
+                                            <input type="number" class="form-control" id="paymentAmount" min="0" step="0.01" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Método de Pago</label>
+                                            <select class="form-select" id="paymentMethodDetails" required>
+                                                <option value="efectivo">Efectivo</option>
+                                                <option value="tarjeta">Tarjeta</option>
+                                                <option value="transferencia">Transferencia</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <button type="button" class="btn btn-success w-100" onclick="processPayment()">
+                                                <i class="bi bi-cash"></i> Procesar Pago
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="script.js"></script>
+        <script>
+            // Register Service Worker
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('/serviceworker.js')
+                        .then(registration => {
+                            console.log('ServiceWorker registration successful');
+                        })
+                        .catch(err => {
+                            console.log('ServiceWorker registration failed: ', err);
+                        });
+                });
+            }
+        </script>
+        <script>
+            // Update welcome message and date
+            document.addEventListener('DOMContentLoaded', function() {
+                // Update welcome message
+                const userDisplay = document.getElementById('welcomeUserName');
+                if (currentUser && validUsers[currentUser]) {
+                    userDisplay.textContent = validUsers[currentUser].name;
+                }
+                
+                // Update current date
+                const dateDisplay = document.getElementById('currentDate');
+                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                dateDisplay.textContent = new Date().toLocaleDateString('es-ES', options);
+            });
+        </script>
+    </div>
+
+</body>
+</html>

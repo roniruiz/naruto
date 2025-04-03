@@ -1,0 +1,41 @@
+-- Add indexes for better performance
+ALTER TABLE inventory ADD INDEX idx_type (type);
+ALTER TABLE inventory ADD INDEX idx_status (status);
+ALTER TABLE sales ADD INDEX idx_date (date);
+ALTER TABLE sales ADD INDEX idx_client_id (client_id);
+ALTER TABLE clients ADD INDEX idx_document_id (document_id);
+ALTER TABLE deceased ADD INDEX idx_date_of_death (date_of_death);
+ALTER TABLE deceased ADD INDEX idx_status (status);
+
+-- Add foreign key constraints
+ALTER TABLE sales 
+ADD CONSTRAINT fk_sales_client 
+FOREIGN KEY (client_id) 
+REFERENCES clients(id) 
+ON DELETE RESTRICT;
+
+ALTER TABLE sale_details 
+ADD CONSTRAINT fk_sale_details_sale 
+FOREIGN KEY (sale_id) 
+REFERENCES sales(id) 
+ON DELETE CASCADE;
+
+ALTER TABLE deceased 
+ADD CONSTRAINT fk_deceased_registered_by 
+FOREIGN KEY (registered_by) 
+REFERENCES users(id) 
+ON DELETE RESTRICT;
+
+-- Add timestamps for better tracking
+ALTER TABLE inventory 
+ADD created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+ADD updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
+
+ALTER TABLE sales 
+ADD created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+ADD updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
+
+ALTER TABLE clients 
+ADD created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+ADD updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
+
